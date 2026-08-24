@@ -16,4 +16,19 @@ router.get("/", async (req, res) => {
     }
 });
 
+router.post("/", async (req, res) => {
+    try {
+        const expense = new Expense(req.body);
+
+        const savedExpense = await expense.save();
+
+        res.status(201).json(savedExpense);
+    } catch (error) {
+        res.status(400).json({
+            message: "Error creating expense",
+            error: error.message
+        });
+    }
+});
+
 module.exports = router;
