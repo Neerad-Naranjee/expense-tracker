@@ -5,8 +5,8 @@ import ExpenseList from "./components/ExpenseList";
 function App() {
   const [refresh, setRefresh] = useState(false);
 
-  const handleExpenseAdded = () => {
-    setRefresh(!refresh);
+  const handleExpenseChanged = () => {
+    setRefresh((previous) => !previous);
   };
 
   return (
@@ -15,10 +15,13 @@ function App() {
 
       <ExpenseForm
         title="Add a New Expense"
-        onExpenseAdded={handleExpenseAdded}
+        onExpenseAdded={handleExpenseChanged}
       />
 
-      <ExpenseList refresh={refresh} />
+      <ExpenseList
+        refresh={refresh}
+        onExpenseDeleted={handleExpenseChanged}
+      />
     </div>
   );
 }

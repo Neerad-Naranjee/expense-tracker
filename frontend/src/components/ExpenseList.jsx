@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
-import ExpenseItem from "./ExpenseItem";    
+import ExpenseItem from "./ExpenseItem";
 
-function ExpenseList({ refresh })  {
+function ExpenseList({ refresh, onExpenseDeleted }) {
   const [expenses, setExpenses] = useState([]);
 
   useEffect(() => {
     const fetchExpenses = async () => {
       try {
-        const response = await fetch("http://localhost:3000/api/expenses");
+        const response = await fetch(
+          "http://localhost:3000/api/expenses"
+        );
 
         const data = await response.json();
 
@@ -28,11 +30,12 @@ function ExpenseList({ refresh })  {
         <p>No expenses found.</p>
       ) : (
         expenses.map((expense) => (
-  <ExpenseItem
-    key={expense._id}
-    expense={expense}
-  />
-))
+          <ExpenseItem
+            key={expense._id}
+            expense={expense}
+            onExpenseDeleted={onExpenseDeleted}
+          />
+        ))
       )}
     </div>
   );
