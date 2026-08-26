@@ -28,6 +28,7 @@ const handleSubmit = async (e) => {
     const data = await response.json();
 
     console.log("Expense created:", data);
+    props.onExpenseAdded(); // Notify parent component to refresh the expense list
   } catch (error) {
     console.error("Error creating expense:", error);
   }
