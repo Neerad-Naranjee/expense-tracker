@@ -20,7 +20,7 @@ function App() {
 
       <ExpenseList
         refresh={refresh}
-        onExpenseDeleted={handleExpenseChanged}
+        onExpenseChanged={handleExpenseChanged}
       />
     </div>
   );

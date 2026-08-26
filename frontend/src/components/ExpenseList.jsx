@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import ExpenseItem from "./ExpenseItem";
 
-function ExpenseList({ refresh, onExpenseDeleted }) {
+function ExpenseList({ refresh, onExpenseChanged }) {
   const [expenses, setExpenses] = useState([]);
 
   useEffect(() => {
@@ -33,7 +33,7 @@ function ExpenseList({ refresh, onExpenseDeleted }) {
           <ExpenseItem
             key={expense._id}
             expense={expense}
-            onExpenseDeleted={onExpenseDeleted}
+            onExpenseChanged={onExpenseChanged}
           />
         ))
       )}
