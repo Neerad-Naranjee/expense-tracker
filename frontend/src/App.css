@@ -2,10 +2,15 @@ body {
   margin: 0;
   font-family: Arial, sans-serif;
   background-color: #f4f4f4;
+  overflow-x: hidden;
 }
 
 #root {
   min-height: 100vh;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 .app {
@@ -223,4 +228,44 @@ button {
 .expense-card:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .app {
+    padding: 25px 15px;
+  }
+
+  .form-card {
+    padding: 20px;
+  }
+
+  .expense-card {
+    padding: 15px;
+  }
+
+  .expense-header {
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .expense-header h3 {
+    font-size: 18px;
+  }
+
+  .expense-amount {
+    font-size: 18px;
+  }
+
+  .expense-summary {
+    padding: 15px;
+  }
+
+  .expense-summary strong {
+    font-size: 20px;
+  }
+
+  .button-group {
+    flex-wrap: wrap;
+  }
 }
