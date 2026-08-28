@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./App.css";
 import ExpenseForm from "./components/ExpenseForm";
 import ExpenseList from "./components/ExpenseList";
 
@@ -10,18 +11,20 @@ function App() {
   };
 
   return (
-    <div>
-      <h1>Expense Tracker</h1>
+    <div className="app">
+      <div className="container">
+        <h1>Expense Tracker</h1>
 
-      <ExpenseForm
-        title="Add a New Expense"
-        onExpenseAdded={handleExpenseChanged}
-      />
+        <ExpenseForm
+          title="Add a New Expense"
+          onExpenseAdded={handleExpenseChanged}
+        />
 
-      <ExpenseList
-        refresh={refresh}
-        onExpenseChanged={handleExpenseChanged}
-      />
+        <ExpenseList
+          refresh={refresh}
+          onExpenseChanged={handleExpenseChanged}
+        />
+      </div>
     </div>
   );
 }

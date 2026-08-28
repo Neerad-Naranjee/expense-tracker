@@ -22,12 +22,19 @@ function ExpenseList({ refresh, onExpenseChanged }) {
     fetchExpenses();
   }, [refresh]);
 
+  const totalExpenses = expenses.reduce((total, expense) => total + Number(expense.amount), 0);
+
   return (
-    <div>
+    <div className="expense-list">
       <h2>Your Expenses</h2>
 
+      <div className="expense-summary">
+        <span>Total Expenses</span>
+        <strong>${totalExpenses.toFixed(2)}</strong>
+      </div>
+
       {expenses.length === 0 ? (
-        <p>No expenses found.</p>
+        <p className="no-expenses">No expenses found.</p>
       ) : (
         expenses.map((expense) => (
           <ExpenseItem

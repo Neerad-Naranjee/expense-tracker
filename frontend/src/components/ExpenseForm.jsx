@@ -6,73 +6,98 @@ function ExpenseForm(props) {
   const [category, setCategory] = useState("");
   const [date, setDate] = useState("");
 
-const handleSubmit = async (e) => {
-  e.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-  const expense = {
-    title,
-    amount: Number(amount),
-    category,
-    date
+    const expense = {
+      title,
+      amount: Number(amount),
+      category,
+      date
+    };
+
+    console.log("Form submitted");
+    console.log(expense);
+
+    try {
+      const response = await fetch("http://localhost:3000/api/expenses", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(expense)
+      });
+
+      const data = await response.json();
+
+      console.log("Expense created:", data);
+
+      props.onExpenseAdded();
+
+      setTitle("");
+      setAmount("");
+      setCategory("");
+      setDate("");
+    } catch (error) {
+      console.error("Error creating expense:", error);
+    }
   };
 
-  try {
-    const response = await fetch("http://localhost:3000/api/expenses", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(expense)
-    });
-
-    const data = await response.json();
-
-    console.log("Expense created:", data);
-    props.onExpenseAdded(); // Notify parent component to refresh the expense list
-  } catch (error) {
-    console.error("Error creating expense:", error);
-  }
-};
-
   return (
-    <div>
+    <div className="form-card">
       <h2>{props.title}</h2>
 
-      <form onSubmit={handleSubmit}>
-        <input
-          placeholder="Expense title"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-        />
+      <form onSubmit={handleSubmit} className="expense-form">
+        <div className="form-group">
+          <label htmlFor="title">Title</label>
+          <input
+            id="title"
+            placeholder="e.g. Coffee"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            required
+          />
+        </div>
 
-        <input
-          type="number"
-          placeholder="Amount"
-          value={amount}
-          onChange={(e) => setAmount(e.target.value)}
-        />
+        <div className="form-group">
+          <label htmlFor="amount">Amount</label>
+          <input
+            id="amount"
+            type="number"
+            placeholder="e.g. 5"
+            value={amount}
+            onChange={(e) => setAmount(e.target.value)}
+            step="0.01"
+            required
+          />
+        </div>
 
-        <input
-          placeholder="Category"
-          value={category}
-          onChange={(e) => setCategory(e.target.value)}
-        />
+        <div className="form-group">
+          <label htmlFor="category">Category</label>
+          <input
+            id="category"
+            placeholder="e.g. Food"
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
+            required
+          />
+        </div>
 
-        <input
-          type="date"
-          value={date}
-          onChange={(e) => setDate(e.target.value)}
-        />
+        <div className="form-group">
+          <label htmlFor="date">Date</label>
+          <input
+            id="date"
+            type="date"
+            value={date}
+            onChange={(e) => setDate(e.target.value)}
+            required
+          />
+        </div>
 
-        <button type="submit">Add Expense</button>
+        <button type="submit" className="add-button">
+          Add Expense
+        </button>
       </form>
-
-      <h3>Current Form Data</h3>
-
-      <p>Title: {title}</p>
-      <p>Amount: {amount}</p>
-      <p>Category: {category}</p>
-      <p>Date: {date}</p>
     </div>
   );
 }

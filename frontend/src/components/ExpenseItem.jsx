@@ -63,60 +63,97 @@ function ExpenseItem({ expense, onExpenseChanged }) {
 
   if (isEditing) {
     return (
-      <div>
-        <form onSubmit={handleUpdate}>
-          <input
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-          />
+      <div className="expense-card">
+        <form onSubmit={handleUpdate} className="edit-form">
+          <div className="form-group">
+            <label>Title</label>
+            <input
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+            />
+          </div>
 
-          <input
-            type="number"
-            value={amount}
-            onChange={(e) => setAmount(e.target.value)}
-          />
+          <div className="form-group">
+            <label>Amount</label>
+            <input
+              type="number"
+              value={amount}
+              onChange={(e) => setAmount(e.target.value)}
+              step="0.01"
+            />
+          </div>
 
-          <input
-            value={category}
-            onChange={(e) => setCategory(e.target.value)}
-          />
+          <div className="form-group">
+            <label>Category</label>
+            <input
+              value={category}
+              onChange={(e) => setCategory(e.target.value)}
+            />
+          </div>
 
-          <input
-            type="date"
-            value={date}
-            onChange={(e) => setDate(e.target.value)}
-          />
+          <div className="form-group">
+            <label>Date</label>
+            <input
+              type="date"
+              value={date}
+              onChange={(e) => setDate(e.target.value)}
+            />
+          </div>
 
-          <button type="submit">Save</button>
+          <div className="button-group">
+            <button type="submit" className="save-button">
+              Save
+            </button>
 
-          <button
-            type="button"
-            onClick={() => setIsEditing(false)}
-          >
-            Cancel
-          </button>
+            <button
+              type="button"
+              className="cancel-button"
+              onClick={() => setIsEditing(false)}
+            >
+              Cancel
+            </button>
+          </div>
         </form>
       </div>
     );
   }
 
   return (
-    <div>
-      <h3>{expense.title}</h3>
+    <div className="expense-card">
+      <div className="expense-header">
+        <h3>{expense.title}</h3>
 
-      <p>Amount: ${expense.amount}</p>
+        <span className="expense-amount">
+          ${Number(expense.amount).toFixed(2)}
+        </span>
+      </div>
 
-      <p>Category: {expense.category}</p>
+      <div className="expense-details">
+        <p>
+          <strong>Category:</strong> {expense.category}
+        </p>
 
-      <p>Date: {expense.date}</p>
+        <p>
+          <strong>Date:</strong>{" "}
+          {new Date(expense.date).toLocaleDateString()}
+        </p>
+      </div>
 
-      <button onClick={() => setIsEditing(true)}>
-        Edit
-      </button>
+      <div className="button-group">
+        <button
+          className="edit-button"
+          onClick={() => setIsEditing(true)}
+        >
+          Edit
+        </button>
 
-      <button onClick={handleDelete}>
-        Delete
-      </button>
+        <button
+          className="delete-button"
+          onClick={handleDelete}
+        >
+          Delete
+        </button>
+      </div>
     </div>
   );
 }
