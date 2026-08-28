@@ -5,9 +5,32 @@ function ExpenseForm(props) {
   const [amount, setAmount] = useState("");
   const [category, setCategory] = useState("");
   const [date, setDate] = useState("");
+  const [error, setError] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    setError("");
+
+if (!title.trim()) {
+  setError("Please enter an expense title.");
+  return;
+}
+
+if (Number(amount) <= 0) {
+  setError("Amount must be greater than 0.");
+  return;
+}
+
+if (!category) {
+  setError("Please select a category.");
+  return;
+}
+
+if (!date) {
+  setError("Please select a date.");
+  return;
+}
 
     const expense = {
       title,
@@ -46,7 +69,7 @@ function ExpenseForm(props) {
   return (
     <div className="form-card">
       <h2>{props.title}</h2>
-
+      {error && <p className="form-error">{error}</p>}
       <form onSubmit={handleSubmit} className="expense-form">
         <div className="form-group">
           <label htmlFor="title">Title</label>
