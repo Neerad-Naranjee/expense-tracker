@@ -191,3 +191,36 @@ button {
 .expense-summary strong {
   font-size: 24px;
 }
+
+.form-group select {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  background-color: white;
+  box-sizing: border-box;
+}
+
+.form-group select:focus {
+  outline: none;
+  border-color: #555;
+}
+
+.category-badge {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 20px;
+  background-color: #eee;
+  color: #333;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.expense-card {
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.expense-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}

@@ -72,16 +72,25 @@ function ExpenseForm(props) {
           />
         </div>
 
-        <div className="form-group">
-          <label htmlFor="category">Category</label>
-          <input
-            id="category"
-            placeholder="e.g. Food"
-            value={category}
-            onChange={(e) => setCategory(e.target.value)}
-            required
-          />
-        </div>
+     <div className="form-group">
+  <label htmlFor="category">Category</label>
+
+  <select
+    id="category"
+    value={category}
+    onChange={(e) => setCategory(e.target.value)}
+    required
+  >
+    <option value="">Select a category</option>
+    <option value="Food">Food</option>
+    <option value="Transport">Transport</option>
+    <option value="Entertainment">Entertainment</option>
+    <option value="Shopping">Shopping</option>
+    <option value="Bills">Bills</option>
+    <option value="Health">Health</option>
+    <option value="Other">Other</option>
+  </select>
+</div>
 
         <div className="form-group">
           <label htmlFor="date">Date</label>

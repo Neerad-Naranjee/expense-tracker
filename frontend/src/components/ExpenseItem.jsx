@@ -130,7 +130,9 @@ function ExpenseItem({ expense, onExpenseChanged }) {
 
       <div className="expense-details">
         <p>
-          <strong>Category:</strong> {expense.category}
+          <span className="category-badge">
+            {expense.category}
+            </span>
         </p>
 
         <p>
